@@ -56,6 +56,8 @@ On the virtual machine I've created the *authorized_keys* file:
 Lastly, I've copied the key to the file:
 ```cat ~/id_rsa.pub >> ~/.ssh/authorized_keys```
 
+Voilà! You can now ssh as asolopov without a password!
+
 >You have to set the rules of your firewall on your server only with the services used outside the VM.
 
 I have installed the ufw (uncomplicated firewall):
@@ -64,6 +66,8 @@ I have installed the ufw (uncomplicated firewall):
 I then added the following rules:
 
 ```sudo ufw allow 50110/tcp``` to allow incoming SSH connection to the port.
+
+```sudo ufw allow 80/tcp``` to allow incoming HTTP connections.
 
 ```sudo ufw allow 443/tcp``` to allow incoming HTTPS connections.
 
