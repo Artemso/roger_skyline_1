@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:13:28 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/04 11:31:15 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/04 12:06:49 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,11 @@ then
 	then
 		sudo adduser $1 sudo
 		echo -e "${GRN}done${NC}"
-		read -p "Would you like to relogin? (yes/y) `echo $'\n> '`" restartprompt
+		read -p "Would you like to exit and relogin? (yes/y) `echo $'\n> '`" restartprompt
 		if [ "$restartprompt" == "yes" ] || [ "$restartprompt" == "y" ]
 		then
-			exit
+			"$(whoami)" me
+			sudo kill -9 `pgrep -f "$me"`
 		fi
 	fi
 else

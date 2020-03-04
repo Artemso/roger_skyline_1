@@ -25,6 +25,15 @@ Software installed:
 
 A script *create_user.sh* takes a USERNAME as a parameter, creates a new user, prompts to add user to sudoers file, prompts to relogin.
 
+>We don’t want you to use the DHCP service of your machine. You’ve got to configure it to have a static IP and a Netmask in \30.
+
+I configured static IP by modifying */etc/network/interfaces* configuration file as follows:
+
+auto enp0s3
+iface enp0s3 inet static
+        address 10.12.107.111
+        netmask 255.255.255.252
+        gateway 10.12.254.254
 ### VI.1 Web Part
 
 ### VI.2 Deployment Part
