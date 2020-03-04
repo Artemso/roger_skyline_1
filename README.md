@@ -35,6 +35,20 @@ iface enp0s3 inet static
     netmask 255.255.255.252
     gateway 10.12.254.254
 ```
+
+>You have to change the default port of the SSH service by the one of your choice. SSH access HAS TO be done with publickeys. SSH root access SHOULD NOT be allowed directly, but with a user who can be root.
+
+The port of the SSH service and root access are configured in */etc/ssh/sshd_config* file:
+```
+Port 50110
+PermitRootLogin no
+```
+
+To SSH with publickey, I've created a key on a machine I will connect from by: *ssh-keygen -t rsa*.
+I then copied the keyfile via scp: *scp -P 50110 /Users/asolopov/.ssh/id_rsa.pub asolopov@10.12.107.111:/home/asolopov/*.
+On the virtual machine I've created the *authorized_keys* file: *mkdir -p ~/.ssh touch ~/.ssh/authorized_keys*.
+Lastly, I've copied the key to the file: *cat ~/id_rsa.pub >> ~/.ssh/authorized_keys*.
+
 ### VI.1 Web Part
 
 ### VI.2 Deployment Part
