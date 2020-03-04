@@ -81,7 +81,9 @@ I then navigated to: ```/etc/fail2ban/```
 
 I've created copies of: ```fail2ban.conf > fail2ban.local && jails.conf > jails.local```
 
-I then modified the *jails.local* file by adding to [sshd] JAILS:
+* Banning SSH
+
+I modified the *jails.local* file by adding to JAILS, [sshd]:
 ```
 mode = normal
 enabled = true
@@ -92,8 +94,6 @@ banaction = iptables-multiport"
 After restarting fail2ban service, I've tried connecting via SSH and passing incorrect password, which resulted in IP ban after permission to connect was denied.
 
 To unban the IP I used: ```sudo fail2ban-client set sshd unbanip 10.12.1.6``` on the VM.
-
-* Banning SSH
 
 * Banning HTTP
 
