@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 19:13:28 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/03 11:36:25 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/04 11:31:15 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,5 +29,5 @@ then
 		fi
 	fi
 else
-	echo "Please add NAME"
+	echo "Usage: ./create_user.sh \"USERNAME\""
 fi
