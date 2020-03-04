@@ -45,8 +45,11 @@ PermitRootLogin no
 ```
 
 To SSH with publickey, I've created a key on a machine I will connect from by: *ssh-keygen -t rsa*.
+
 I then copied the keyfile via scp: *scp -P 50110 /Users/asolopov/.ssh/id_rsa.pub asolopov@10.12.107.111:/home/asolopov/*.
+
 On the virtual machine I've created the *authorized_keys* file: *mkdir -p ~/.ssh touch ~/.ssh/authorized_keys*.
+
 Lastly, I've copied the key to the file: *cat ~/id_rsa.pub >> ~/.ssh/authorized_keys*.
 
 ### VI.1 Web Part
