@@ -62,8 +62,11 @@ I have installed the ufw (uncomplicated firewall):
 ```sudo apt install ufw```
 
 I then added the following rules:
+
 ```sudo ufw allow 50110/tcp``` to allow incoming SSH connection to the port.
+
 ```sudo ufw allow 443/tcp``` to allow incoming HTTPS connections.
+
 All other incoming connections are denied, and all outgoing connections are allowed.
 
 ### VI.1 Web Part
