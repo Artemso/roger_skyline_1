@@ -83,7 +83,7 @@ I've created copies of: ```fail2ban.conf > fail2ban.local && jails.conf > jails.
 
 * Banning SSH
 
-I modified the *jails.local* file by adding to JAILS, [sshd]:
+I modified the *jails.local* file by adding to [sshd] jail:
 ```
 mode = normal
 enabled = true
@@ -97,7 +97,7 @@ To unban the IP I used: ```sudo fail2ban-client set sshd unbanip 10.12.1.6``` on
 
 * Banning HTTP
 
-I modified the *jails.local* file by adding a new jail to JAILS, [http-get-dos]:
+I modified the *jails.local* file by adding a new jail [http-get-dos]:
 ```
 [http-get-dos]
 enabled = true
@@ -122,6 +122,27 @@ After restarting fail2ban service, I've tried to Slowloris DOS at 10.12.107.111:
 To unban the IP I used: ```sudo fail2ban-client set http-get-dos unbanip 10.12.1.6``` on the VM.
 
 >You have to set a protection against scans on your VM’s open ports.
+
+I used fail2ban to protect against port scanning by adding a new jail to *jail.local* [port-ban-hammer]:
+```
+[port-ban-hammer]
+enabled = true
+filter = port-ban-hammer
+logpath = /var/log/ufw.log
+maxretry = 10
+action = iptables[name=HTTP, port=http, protocol=tcp]
+```
+
+I then created a filter file *port-ban-hammer.conf* in: ```/etc/fail2ban/filter.d/```
+```
+[Definition]
+fail2ban-regex  /var/log/ufw.log '.*\[UFW BLOCK\] IN=.* SRC=<HOST>'
+ignoreregex =
+```
+
+After restarting fail2ban service, I've tried a python port scanning script, which resulted in IP ban after 10 tries.
+
+To unban the IP I used: ```sudo fail2ban-client set port-ban-hammer unbanip 10.12.1.6``` on the VM.
 
 ### VI.1 Web Part
 
