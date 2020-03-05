@@ -144,10 +144,27 @@ After restarting fail2ban service, I've tried a python port scanning script, whi
 
 To unban the IP I used: ```sudo fail2ban-client set port-ban-hammer unbanip 10.12.1.6``` on the VM.
 
-
-
-
 >Stop the services you don’t need for this project.
+
+Services kept:
+
+apache2, apparmor, cron, dbus, fail2ban, networking, procps, ssh, ufw
+
+>Create a script that updates all the sources of package, then your packages and which logs the whole in a file named /var/log/update_script.log. Create a scheduled task for this script once a week at 4AM and every time the machine reboots.
+
+Check the *update_packages.sh* script.
+
+>Make a script to monitor changes of the /etc/crontab file and sends an email to root if it has been modified. Create a scheduled script task every day at midnight.
+
+Check the *compare_cron.sh* script.
+
+To run: ```sudo bash compare_cron.sh /etc/crontab md5crontab```
+
+To successfully send mail to root update the */etc/aliases* file:
+```
+root: root
+```
+Then do *sudo newaliases* to update aliases.
 
 ### VI.1 Web Part
 
