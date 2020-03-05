@@ -144,6 +144,11 @@ After restarting fail2ban service, I've tried a python port scanning script, whi
 
 To unban the IP I used: ```sudo fail2ban-client set port-ban-hammer unbanip 10.12.1.6``` on the VM.
 
+
+
+
+>Stop the services you don’t need for this project.
+
 ### VI.1 Web Part
 
 ### VI.2 Deployment Part
