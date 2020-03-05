@@ -97,6 +97,30 @@ To unban the IP I used: ```sudo fail2ban-client set sshd unbanip 10.12.1.6``` on
 
 * Banning HTTP
 
+I modified the *jails.local* file by adding a new jail to JAILS, [http-get-dos]:
+```
+[http-get-dos]
+enabled = true
+port = http,https
+filter = http-get-dos
+logpath = /var/log/apache2/access.log
+maxretry = 200
+findtime = 200
+bantime = 600
+action = iptables[name=HTTP, port=http, protocol=tcp]
+```
+
+I then created a filter file *http-get-dos.conf* in: ```/etc/fail2ban/filter.d/```
+```
+[Definition]
+failregex = ^<HOST> -.*"(GET|POST).*
+ignoreregex =
+```
+
+After restarting fail2ban service, I've tried to Slowloris DOS at 10.12.107.111:80, which resulted in IP ban.
+
+To unban the IP I used: ```sudo fail2ban-client set http-get-dos unbanip 10.12.1.6``` on the VM.
+
 ### VI.1 Web Part
 
 ### VI.2 Deployment Part
