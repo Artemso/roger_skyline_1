@@ -164,7 +164,7 @@ To successfully send mail to root update the */etc/aliases* file:
 ```
 root: root
 ```
-Then do *sudo newaliases* to update aliases.
+Then do ```sudo newaliases``` to update aliases.
 
 ### VI.1 Web Part
 
