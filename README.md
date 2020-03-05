@@ -121,6 +121,8 @@ After restarting fail2ban service, I've tried to Slowloris DOS at 10.12.107.111:
 
 To unban the IP I used: ```sudo fail2ban-client set http-get-dos unbanip 10.12.1.6``` on the VM.
 
+>You have to set a protection against scans on your VM’s open ports.
+
 ### VI.1 Web Part
 
 ### VI.2 Deployment Part
