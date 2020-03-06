@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 14:27:53 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 14:28:43 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,5 +113,5 @@ echo -e "${GREEN}-----Setting up crontab-----${RES}"
 echo -e "${GREEN}-----save md5sum of cron-----${RES}"
 md5sum /var/spool/cron/crontabs/root > md5sum
 cp /home/$USER_NAME/deploy/md5sum /home
-cp /home/$USER_NAME/deploy/compare_cron.sh /home
-cp /home/$USER_NAME/deploy/update_packages.sh /home
+cp /home/$USER_NAME/deploy/srcs/compare_cron.sh /home
+cp /home/$USER_NAME/deploy/srcs/update_packages.sh /home
