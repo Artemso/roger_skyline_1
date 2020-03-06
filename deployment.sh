@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 16:01:57 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 16:02:38 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ md5sum /var/spool/cron/crontabs/root > md5sum || error_exit
 echo -e "${GREEN}----------Done-----${RES}"
 echo -e "${GREEN}----------Copy cronfiles to home-----${RES}"
 cp /home/$USER_NAME/deploy/md5sum /home || error_exit
-cp /home/$USER_NAME/deploy/root /home || error_exit
+cp /home/$USER_NAME/deploy/srcs/root /home || error_exit
 cp /home/$USER_NAME/deploy/srcs/compare_cron.sh /home || error_exit
 cp /home/$USER_NAME/deploy/srcs/update_packages.sh /home || error_exit
 echo -e "${GREEN}----------Done-----${RES}"
