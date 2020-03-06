@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 16:27:30 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 16:35:24 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,18 +122,18 @@ echo -e "${GREEN}----------Save md5sum of cron${RES}"
 md5sum /var/spool/cron/crontabs/root > md5sum || error_exit
 echo -e "${GREEN}----------Done${RES}"
 echo -e "${GREEN}----------Copy cronfiles to home${RES}"
-cp /home/$USER_NAME/deploy/md5sum /home || error_exit
-cp /home/$USER_NAME/deploy/srcs/root /home || error_exit
-cp /home/$USER_NAME/deploy/srcs/compare_cron.sh /home || error_exit
-cp /home/$USER_NAME/deploy/srcs/update_packages.sh /home || error_exit
+cp md5sum /home || error_exit
+cp srcs/root /home || error_exit
+cp srcs/compare_cron.sh /home || error_exit
+cp srcs/update_packages.sh /home || error_exit
 echo -e "${GREEN}----------Done${RES}"
 echo -e "${GREEN}----------Apply cron file${RES}"
 cp /home/root /var/spool/cron/crontab || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Deploying Website-----${RES}"
-cp /home/$USER_NAME/deploy/srcs/index.html /var/www/html
-cp /home/$USER_NAME/deploy/srcs/doggie_banana.jpg /var/www/html
+cp srcs/index.html /var/www/html
+cp srcs/doggie_banana.jpg /var/www/html
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Resetting web server-----${RES}"
