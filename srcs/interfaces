@@ -11,7 +11,7 @@ iface lo inet loopback
 # The primary network interface
 auto enp0s3
 iface enp0s3 inet static
-	address 10.12.107.111
+	address 10.12.101.101
 	netmask 255.255.255.252
 	gateway 10.12.254.254
 
