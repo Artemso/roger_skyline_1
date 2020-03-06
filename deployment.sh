@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 16:35:24 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 16:40:59 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ systemctl status sshd --no-pager || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Enabling ufw-----${RES}"
-ufw --force enable
+sudo ufw --force enable
 echo -e "${GREEN}-----Done-----${RES}"
 
 declare -a ufw_allow=(
@@ -85,7 +85,7 @@ declare -a ufw_allow=(
 
 for x in "${ufw_allow[@]}"; do
 	echo -e "${GREEN}-----Allowing "$x"-----${RES}"
-	ufw allow "$x" || error_exit
+	sudo ufw allow "$x" || error_exit
 done
 echo -e "${GREEN}-----Done-----${RES}"
 
