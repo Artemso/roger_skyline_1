@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 16:06:02 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 16:08:58 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,4 +121,13 @@ cp /home/$USER_NAME/deploy/srcs/update_packages.sh /home || error_exit
 echo -e "${GREEN}----------Done${RES}"
 echo -e "${GREEN}----------Apply cron file${RES}"
 cp /home/root /var/spool/cron/crontab || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----Deploying Website-----${RES}"
+cp /home/$USER_NAME/deploy/srcs/index.html /var/www/html
+cp /home/$USER_NAME/deploy/srcs/doggie_melon.jpg /var/www/html
+echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----Resetting web server-----${RES}"
+systemctl restart apache2
 echo -e "${GREEN}-----Done-----${RES}"
