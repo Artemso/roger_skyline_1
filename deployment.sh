@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 12:53:40 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 13:46:00 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,46 +21,53 @@ error_exit() {
 	exit
 }
 
-# echo -e "${GREEN}-----Updating system-----${RES}"
-# bash srcs/update_packages.sh || error_exit
-# echo -e "${GREEN}-----Done-----${RES}"
+echo -e "${GREEN}-----Creating New User-----${RES}"
+bash srcs/create_user.sh || error_exit
 
-# declare -a packages=(
-# 	"vim"
-# 	"ufw"
-# 	"fail2ban"
-# 	"postfix"
-# 	"mailutils"
-# 	"apache2"
-# )
+echo -e "${GREEN}-----Updating system-----${RES}"
+bash srcs/update_packages.sh || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
 
-# for p in ${packages[@]}; do
-# 	echo -e "${GREEN}-----Installing package "$p"-----${RES}"
-# 	apt-get install -y $p
-# done
-# echo -e "${GREEN}-----Done-----${RES}"
+declare -a packages=(
+	"vim"
+	"ufw"
+	"fail2ban"
+	"postfix"
+	"mailutils"
+	"apache2"
+)
 
-# echo -e "${GREEN}-----Copying interfaces-----${RES}"
-# cp srcs/interfaces /etc/network
-# echo -e "${GREEN}-----Done-----${RES}"
+for p in ${packages[@]}; do
+	echo -e "${GREEN}-----Installing package "$p"-----${RES}"
+	apt-get install -y $p || error_exit
+done
+echo -e "${GREEN}-----Done-----${RES}"
 
-# echo -e "${GREEN}-----Copying sshd_config-----${RES}"
-# cp srcs/interfaces /etc/ssh
-# echo -e "${GREEN}-----Done-----${RES}"
+echo -e "${GREEN}-----Copying interfaces-----${RES}"
+cp srcs/interfaces /etc/network || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
 
-# echo -e "${GREEN}-----Restarting networking and ssh-----${RES}"
-# systemctl restart networking
-# systemctl restart sshd
-# echo -e "${GREEN}-----Done-----${RES}"
+echo -e "${GREEN}-----Copying sshd_config-----${RES}"
+cp srcs/interfaces /etc/ssh || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
 
-# echo -e "${GREEN}-----Printing networking and ssh status-----${RES}"
-# systemctl status networking --no-pager
-# systemctl status sshd --no-pager
-# echo -e "${GREEN}-----Done-----${RES}"
+echo -e "${GREEN}-----Adding public key-----${RES}"
+cat srcs/id_rsa.pub > ~/.ssh/authorized_keys || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
 
-# echo -e "${GREEN}-----Enabling ufw-----${RES}"
-# ufw enable
-# echo -e "${GREEN}-----Done-----${RES}"
+echo -e "${GREEN}-----Restarting networking and ssh-----${RES}"
+systemctl restart networking || error_exit
+systemctl restart sshd || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----Printing networking and ssh status-----${RES}"
+systemctl status networking --no-pager || error_exit
+systemctl status sshd --no-pager || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----Enabling ufw-----${RES}"
+ufw enable
+echo -e "${GREEN}-----Done-----${RES}"
 
 declare -a ufw_allow=(
 	"${SSH_PORT}/tcp"
@@ -70,6 +77,10 @@ declare -a ufw_allow=(
 
 for x in "${ufw_allow[@]}"; do
 	echo -e "${GREEN}-----Allowing "$x"-----${RES}"
-	ufw allow "$x"
+	ufw allow "$x" || error_exit
 done
+echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----ufw status-----${RES}"
+ufw status verbose || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
