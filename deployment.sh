@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 13:59:53 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 14:21:49 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,10 +86,31 @@ ufw status verbose || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Updating jail.conf-----${RES}"
-cp srcs/jail.local /etc/fail2ban
+cp srcs/jail.local /etc/fail2ban || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Adding filters-----${RES}"
-cp srcs/http-get-dos.conf /etc/fail2ban/filter.d
-cp srcs/port-ban-hammer.conf /etc/fail2ban/filter.d
+cp srcs/http-get-dos.conf /etc/fail2ban/filter.d || error_exit
+cp srcs/port-ban-hammer.conf /etc/fail2ban/filter.d || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----Restarting fail2ban-----${RES}"
+systemctl restart fail2ban || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
+
+declare -a disable_service=(
+	"keyboard-setup"
+	"console-setup"
+)
+for y in "${disable_service[@]}"; do
+	echo -e "${GREEN}-----Disabling "$y"-----${RES}"
+	systemctl disable ${e}.service || error_exit
+done
+echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----Setting up crontab-----${RES}"
+echo -e "${GREEN}-----save md5sum of cron-----${RES}"
+md5sum cat /var/spool/cron/crontabs/root > md5sum
+cp md5sum /home
+cp compare_cron.sh /home
+cp update_packages.sh /home
