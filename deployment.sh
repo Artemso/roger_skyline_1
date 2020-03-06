@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 13:47:23 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 13:47:43 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ error_exit() {
 }
 
 echo -e "${GREEN}-----Creating New User-----${RES}"
-bash srcs/create_user.sh "$(USER_NAME" || error_exit
+bash srcs/create_user.sh "$(USER_NAME)" || error_exit
 
 echo -e "${GREEN}-----Updating system-----${RES}"
 bash srcs/update_packages.sh || error_exit
