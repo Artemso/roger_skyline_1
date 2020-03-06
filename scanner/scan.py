@@ -7,7 +7,7 @@ remoteServerIP = socket.gethostbyname(remoteServer)
 print("scanning ...", remoteServerIP)
 t1 = datetime.now()
 try:
-	for port in range(75, 100):
+	for port in range(1, 500):
 		print("Checking ", port)
 		sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 		sock.settimeout(0.1)
