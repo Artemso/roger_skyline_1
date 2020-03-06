@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 17:05:19 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 17:18:17 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Updating jail.conf-----${RES}"
 cp srcs/jail.local /etc/fail2ban || error_exit
+cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Adding filters-----${RES}"
