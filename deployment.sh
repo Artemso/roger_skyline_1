@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 16:09:51 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 16:24:55 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,15 @@ echo -e "${GREEN}-----Copying sshd_config-----${RES}"
 cp srcs/interfaces /etc/ssh || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
+key_file=/home/$USER_NAME/.ssh/authorized_keys
 echo -e "${GREEN}-----Adding public key-----${RES}"
-cat srcs/id_rsa.pub > /home/$USER_NAME/.ssh/authorized_keys || error_exit
+if [ -f "$key_file" ];
+then
+	cat srcs/id_rsa.pub > /home/$USER_NAME/.ssh/authorized_keys || error_exit
+else
+	touch /home/$USER_NAME/.ssh/authorized_keys || error_exit
+	cat srcs/id_rsa.pub > /home/$USER_NAME/.ssh/authorized_keys || error_exit
+fi
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Restarting networking and ssh-----${RES}"
