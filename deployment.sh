@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 17:42:57 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 17:43:42 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,6 +137,9 @@ cp srcs/index.html /var/www/html
 cp srcs/doggie_banana.jpg /var/www/html
 echo -e "${GREEN}-----Done-----${RES}"
 
-echo -e "${GREEN}-----Resetting web server-----${RES}"
+echo -e "${GREEN}-----Restarting all services-----${RES}"
+systemctl restart networking
+systemctl restart ufw
+systemctl restart fail2ban
 systemctl restart apache2
 echo -e "${GREEN}-----Done-----${RES}"
