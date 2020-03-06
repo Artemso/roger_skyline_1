@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 13:51:34 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 13:59:53 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,4 +83,13 @@ echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----ufw status-----${RES}"
 ufw status verbose || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----Updating jail.conf-----${RES}"
+cp srcs/jail.local /etc/fail2ban
+echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----Adding filters-----${RES}"
+cp srcs/http-get-dos.conf /etc/fail2ban/filter.d
+cp srcs/port-ban-hammer.conf /etc/fail2ban/filter.d
 echo -e "${GREEN}-----Done-----${RES}"
