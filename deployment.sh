@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 16:05:04 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 16:06:02 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,15 +110,15 @@ done
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Setting up crontab-----${RES}"
-echo -e "${GREEN}----------Save md5sum of cron-----${RES}"
+echo -e "${GREEN}----------Save md5sum of cron${RES}"
 md5sum /var/spool/cron/crontabs/root > md5sum || error_exit
-echo -e "${GREEN}----------Done-----${RES}"
-echo -e "${GREEN}----------Copy cronfiles to home-----${RES}"
+echo -e "${GREEN}----------Done${RES}"
+echo -e "${GREEN}----------Copy cronfiles to home${RES}"
 cp /home/$USER_NAME/deploy/md5sum /home || error_exit
 cp /home/$USER_NAME/deploy/srcs/root /home || error_exit
 cp /home/$USER_NAME/deploy/srcs/compare_cron.sh /home || error_exit
 cp /home/$USER_NAME/deploy/srcs/update_packages.sh /home || error_exit
-echo -e "${GREEN}----------Done-----${RES}"
-echo -e "${GREEN}----------Apply cron file-----${RES}"
+echo -e "${GREEN}----------Done${RES}"
+echo -e "${GREEN}----------Apply cron file${RES}"
 cp /home/root /var/spool/cron/crontab || error_exit
-echo -e "${GREEN}----------Done-----${RES}"
+echo -e "${GREEN}-----Done-----${RES}"
