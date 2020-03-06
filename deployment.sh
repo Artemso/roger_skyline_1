@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 12:16:09 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 12:17:59 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,5 +20,6 @@ error_exit() {
 	exit
 }
 
-echo "Updating system"
+echo -e "${GREEN}-----Updating system-----${RES}"
 bash srcs/update_packages.sh || error_exit
+echo -e "${GREEN}-----Done-----${RES}"
