@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 16:24:55 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 16:27:30 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ if [ -f "$key_file" ];
 then
 	cat srcs/id_rsa.pub > /home/$USER_NAME/.ssh/authorized_keys || error_exit
 else
+	mkdir /home/$USER_NAME/.ssh
 	touch /home/$USER_NAME/.ssh/authorized_keys || error_exit
 	cat srcs/id_rsa.pub > /home/$USER_NAME/.ssh/authorized_keys || error_exit
 fi
