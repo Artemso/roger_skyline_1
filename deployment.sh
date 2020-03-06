@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 14:24:51 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 14:27:53 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,19 +99,19 @@ systemctl restart fail2ban || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 declare -a disable_service=(
-	"keyboard-setup"
-	"console-setup"
+	"keyboard-setup.service"
+	"console-setup.service"
 )
 for y in "${disable_service[@]}"; do
 	echo -e "${GREEN}-----Disabling "$y"-----${RES}"
-	systemctl stop ${e}.service
-	systemctl disable ${e}.service
+	systemctl stop ${e}
+	systemctl disable ${e}
 done
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Setting up crontab-----${RES}"
 echo -e "${GREEN}-----save md5sum of cron-----${RES}"
-md5sum cat /var/spool/cron/crontabs/root > md5sum
-cp md5sum /home
-cp compare_cron.sh /home
-cp update_packages.sh /home
+md5sum /var/spool/cron/crontabs/root > md5sum
+cp /home/$USER_NAME/deploy/md5sum /home
+cp /home/$USER_NAME/deploy/compare_cron.sh /home
+cp /home/$USER_NAME/deploy/update_packages.sh /home
