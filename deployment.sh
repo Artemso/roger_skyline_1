@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 17:35:10 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 17:37:06 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,9 +119,7 @@ done
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Setting up crontab-----${RES}"
-
 echo -e "${GREEN}----------Copy cronfiles to home${RES}"
-cp md5sum /home || error_exit
 cp srcs/root /home || error_exit
 cp srcs/compare_cron.sh /home || error_exit
 cp srcs/update_packages.sh /home || error_exit
@@ -130,6 +128,7 @@ echo -e "${GREEN}----------Apply cron file${RES}"
 cp /home/root /var/spool/cron/crontabs/ || error_exit
 echo -e "${GREEN}----------Save md5sum of cron${RES}"
 md5sum /var/spool/cron/crontabs/root > md5sum || error_exit
+cp md5sum /home || error_exit
 echo -e "${GREEN}----------Done${RES}"
 echo -e "${GREEN}-----Done-----${RES}"
 
