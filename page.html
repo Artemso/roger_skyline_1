@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Login Page</title>
+</head>
+<body>
+<body style="background-color:black;"></body>
+<form name="loginForm" method="post" action="doggie_banana.png">
+<table width="30%" bgcolor="ebcf00" align="center">
+
+<tr>
+<td colspan=2><center><font size=20><b>Welcome, Hiver!</b></font></center></td>
+</tr>
+
+<tr>
+<td colspan=2><center><font size=5><b>Hint: login-banana, passwd-banana</b></font></center></td>
+</tr>
+
+<tr>
+<td> <center>Username:</center></td>
+<td><input type="text" size=25 name="userid"></td>
+</tr>
+
+<tr>
+<td> <center>Password:</center></td>
+<td><input type="Password" size=25 name="pwd"></td>
+</tr>
+
+<tr>
+<td ><center><input type="Reset"></center></td>
+<td><input type="submit" onclick="return check(this.form)" value="Login"></td>
+</tr>
+
+</table>
+</form>
+<script language="javascript">
+function check(form)
+{
+
+if(form.userid.value == "banana" && form.pwd.value == "banana")
+{
+	return true;
+}
+else
+{
+	alert("Error Password or Username")
+	return false;
+}
+}
+</script>
+
+</body>
+</html>
