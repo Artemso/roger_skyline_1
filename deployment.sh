@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 13:48:13 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 13:51:02 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ cp srcs/interfaces /etc/ssh || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Adding public key-----${RES}"
-cat srcs/id_rsa.pub > ~/.ssh/authorized_keys || error_exit
+cat srcs/id_rsa.pub > home/$USER_NAME/.ssh/authorized_keys || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Restarting networking and ssh-----${RES}"
