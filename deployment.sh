@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 17:43:42 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 17:54:38 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,6 +123,7 @@ echo -e "${GREEN}----------Copy cronfiles to home${RES}"
 cp srcs/root /home || error_exit
 cp srcs/compare_cron.sh /home || error_exit
 cp srcs/update_packages.sh /home || error_exit
+cp srcs/mailbody /home || error_exit
 echo -e "${GREEN}----------Done${RES}"
 echo -e "${GREEN}----------Apply cron file${RES}"
 cp /home/root /var/spool/cron/crontabs/ || error_exit
