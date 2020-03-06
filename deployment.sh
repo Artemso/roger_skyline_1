@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 12:50:54 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 12:51:31 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,6 @@ declare -a ufw_allow=(
 
 for x in "${ufw_allow[@]}"; do
 	echo -e "${GREEN}-----Allowing "$x"-----${RES}"
-	ufw allow 'echo ${x}'
+	echo ${x}
 done
 echo -e "${GREEN}-----Done-----${RES}"
