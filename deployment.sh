@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 16:02:38 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 16:05:04 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ systemctl status sshd --no-pager || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Enabling ufw-----${RES}"
-ufw enable
+ufw --force enable
 echo -e "${GREEN}-----Done-----${RES}"
 
 declare -a ufw_allow=(
