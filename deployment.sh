@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 12:43:07 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 12:46:23 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ for p in ${packages[@]}; do
 done
 echo -e "${GREEN}-----Done-----${RES}"
 
-echo -e "${GREEN}-----Copying nterfaces-----${RES}"
+echo -e "${GREEN}-----Copying interfaces-----${RES}"
 cp srcs/interfaces /etc/network
 echo -e "${GREEN}-----Done-----${RES}"
 
@@ -54,6 +54,6 @@ systemctl restart sshd
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Printing networking and ssh status-----${RES}"
-systemctl status networking
-systemctl status sshd
+systemctl status networking --no-pager
+systemctl status sshd --no-pager
 echo -e "${GREEN}-----Done-----${RES}"
