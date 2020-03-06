@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 17:54:38 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 18:18:16 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ cp srcs/interfaces /etc/network || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Copying sshd_config-----${RES}"
-cp srcs/interfaces /etc/ssh || error_exit
+cp srcs/sshd_config /etc/ssh || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 key_file=/home/$USER_NAME/.ssh/authorized_keys
@@ -143,4 +143,5 @@ systemctl restart networking
 systemctl restart ufw
 systemctl restart fail2ban
 systemctl restart apache2
+systemctl restart sshd
 echo -e "${GREEN}-----Done-----${RES}"
