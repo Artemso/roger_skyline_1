@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 12:24:31 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 12:25:30 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ declare -a packages=(
 )
 
 for p in ${packages[@]}; do
-	echo -e "${GREEN}-----Installing packages-----${RES}"
+	echo -e "${GREEN}-----Installing package "$p"-----${RES}"
 	apt-get install -y $p
 done
 echo -e "${GREEN}-----Done-----${RES}"
