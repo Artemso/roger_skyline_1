@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 14:22:52 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 14:24:51 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,8 @@ declare -a disable_service=(
 )
 for y in "${disable_service[@]}"; do
 	echo -e "${GREEN}-----Disabling "$y"-----${RES}"
-	systemctl disable ${e} || error_exit
+	systemctl stop ${e}.service
+	systemctl disable ${e}.service
 done
 echo -e "${GREEN}-----Done-----${RES}"
 
