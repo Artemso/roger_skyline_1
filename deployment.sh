@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 14:28:43 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 15:59:12 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,14 +104,21 @@ declare -a disable_service=(
 )
 for y in "${disable_service[@]}"; do
 	echo -e "${GREEN}-----Disabling "$y"-----${RES}"
-	systemctl stop ${e}
-	systemctl disable ${e}
+	systemctl stop ${e} || error_exit
+	systemctl disable ${e} || error_exit
 done
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Setting up crontab-----${RES}"
-echo -e "${GREEN}-----save md5sum of cron-----${RES}"
-md5sum /var/spool/cron/crontabs/root > md5sum
-cp /home/$USER_NAME/deploy/md5sum /home
-cp /home/$USER_NAME/deploy/srcs/compare_cron.sh /home
-cp /home/$USER_NAME/deploy/srcs/update_packages.sh /home
+echo -e "${GREEN}----------Save md5sum of cron-----${RES}"
+md5sum /var/spool/cron/crontabs/root > md5sum || error_exit
+echo -e "${GREEN}----------Done-----${RES}"
+echo -e "${GREEN}----------Copy cronfiles to home-----${RES}"
+cp /home/$USER_NAME/deploy/md5sum /home || error_exit
+cp /home/$USER_NAME/deploy/root /home || error_exit
+cp /home/$USER_NAME/deploy/srcs/compare_cron.sh /home || error_exit
+cp /home/$USER_NAME/deploy/srcs/update_packages.sh /home || error_exit
+echo -e "${GREEN}----------Done-----${RES}"
+echo -e "${GREEN}----------Apply cron file-----${RES}"
+cp /home/root /var/spool/cron/crontab || error_exit
+echo -e "${GREEN}----------Done-----${RES}"
