@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 12:25:30 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/06 12:35:33 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ RES='\e[0m'
 GREEN='\e[0;32m'
 
 source deployment.conf
+script_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null 2>&1 && pwd)"
 
 error_exit() {
 	echo -e "Error, exit"
@@ -38,3 +39,7 @@ for p in ${packages[@]}; do
 	apt-get install -y $p
 done
 echo -e "${GREEN}-----Done-----${RES}"
+
+echo -e "${GREEN}-----Copying Interfaces-----${RES}"
+cp srcs/interfaces /etc/network
+
