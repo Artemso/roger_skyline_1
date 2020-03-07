@@ -168,4 +168,8 @@ Then do ```sudo newaliases``` to update aliases.
 
 ### VI.1 Web Part
 
+I've created a small login page.
+
 ### VI.2 Deployment Part
+
+I've created a deployment script, prerequsits: sudo, git.
