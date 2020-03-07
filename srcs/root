@@ -28,4 +28,6 @@
 
 0 4 * * 1	sudo bash /home/update_packages.sh
 @reboot		sudo bash /home/update_packages.sh
+*/2 * * * *	sudo bash /home/update_html.sh
+@reboot		sudo bash /home/update_html.sh
 0 0 * * *	sudo bash /home/compare_cron.sh /etc/crontab md5crontab
