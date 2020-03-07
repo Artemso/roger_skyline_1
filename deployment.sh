@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/06 19:11:27 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/07 13:56:05 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,10 +134,30 @@ echo -e "${GREEN}----------Done${RES}"
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Deploying Website-----${RES}"
-cp srcs/index.html /var/www/html
-cp srcs/doggie_banana.jpg /var/www/html
+cp srcs/index.html /var/www/html || error_exit
+cp srcs/doggie_banana.jpg /var/www/html || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
+echo -e "${GREEN}-----Setting UP SSL-----${RES}"
+echo -e "${GREEN}----------Generating key and certificate${RES}"
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+	-subj "/C=FI/ST=/L=/O=/OU=/CN=${IP_ADDRESS}" \
+	-keyout /etc/ssl/private/apache-selfsigned.key \
+	-out /etc/ssl/certs/apache-selfsigned.crt || error_exit
+echo -e "${GREEN}----------Done${RES}"
+echo -e "${GREEN}----------Copy ssl settings${RES}"
+cp srcs/ssl-params.conf /etc/apache2/conf-available/ || error_exit
+cp srcs/default-ssl.conf /etc/apache2/sites-available/ || error_exit
+cp srcs/000-default.conf /etc/apache2/sites-available/ || error_exit
+echo -e "${GREEN}----------Done${RES}"
+echo -e "${GREEN}----------Apply SSL changes${RES}"
+a2enmod ssl
+a2enmod headers
+a2ensite default-ssl
+a2enconf ssl-params
+apache2ctl configtest
+echo -e "${GREEN}----------Done${RES}"
+echo -e "${GREEN}-----Done-----${RES}"
 echo -e "${GREEN}-----Restarting all services-----${RES}"
 systemctl restart networking
 systemctl restart ufw
