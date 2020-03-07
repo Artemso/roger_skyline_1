@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 12:09:02 by asolopov          #+#    #+#              #
-#    Updated: 2020/03/07 13:56:05 by asolopov         ###   ########.fr        #
+#    Updated: 2020/03/07 15:55:00 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,6 +136,8 @@ echo -e "${GREEN}-----Done-----${RES}"
 echo -e "${GREEN}-----Deploying Website-----${RES}"
 cp srcs/index.html /var/www/html || error_exit
 cp srcs/doggie_banana.jpg /var/www/html || error_exit
+
+md5sum /var/www/html/index.html > /home/html_md5 || error_exit
 echo -e "${GREEN}-----Done-----${RES}"
 
 echo -e "${GREEN}-----Setting UP SSL-----${RES}"
